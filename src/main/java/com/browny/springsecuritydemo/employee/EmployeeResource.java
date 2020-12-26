@@ -24,7 +24,7 @@ public class EmployeeResource {
     public Employee getEmployee(@PathVariable("employeeId") Integer id){
         return employees.stream()
                 .filter(employee -> id == employee.getId())
-                .findAny()
+                .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Employee with id : " + id + " not found"));
     }
 }
