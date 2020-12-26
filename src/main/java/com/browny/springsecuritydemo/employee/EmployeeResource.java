@@ -22,9 +22,9 @@ public class EmployeeResource {
 
     @GetMapping(path = "/{employeeId}")
     public Employee getEmployee(@PathVariable("employeeId") Integer id){
-        return employees.stream()
+        return employees.parallelStream()
                 .filter(employee -> id == employee.getId())
-                .findFirst()
+                .findAny()
                 .orElseThrow(() -> new IllegalStateException("Employee with id : " + id + " not found"));
     }
 }
